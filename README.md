@@ -4,6 +4,10 @@ An AI-powered web application that generates custom iOS-style Memoji emojis base
 
 ![App Screenshot](frontend/public/app-screenshot.png)
 
+## Deployed Link
+
+[Memoji Generator](https://ios-memoji-generator.vercel.app/)
+
 ## Features
 
 - 🎨 Generate custom iOS-style Memojis from text descriptions
