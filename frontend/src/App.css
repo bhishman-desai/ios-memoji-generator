@@ -66,6 +66,54 @@
   background-color: #FF7F50;
 }
 
+.input-container {
+  margin: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.App-input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 3px solid #000;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 5px 5px 0px #000;
+}
+
+.error-message {
+  color: #ff0033;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.image-container {
+  margin: 2rem 0;
+}
+
+.generated-image {
+  max-width: 100%;
+  height: auto;
+  border: 3px solid #000;
+  border-radius: 4px;
+  box-shadow: 8px 8px 0px #000;
+}
+
+.App-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #FFFF99;
+  border: 3px solid #000;
+  box-shadow: 8px 8px 0px #000;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
