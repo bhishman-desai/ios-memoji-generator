@@ -28,11 +28,16 @@ function App() {
   const [error, setError] = useState('');
   const [generatedImage, setGeneratedImage] = useState('');
   const [downloadFormat, setDownloadFormat] = useState('png');
+  const [lastSuccessfulPrompt, setLastSuccessfulPrompt] = useState('');
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
       setError('Please enter a description');
       return;
+    }
+
+    if (prompt === lastSuccessfulPrompt && generatedImage) {
+      return; // Skip generation if prompt hasn't changed and we have an image
     }
 
     setLoading(true);
@@ -51,6 +56,7 @@ function App() {
       const result = await response.json();
       if (result.data) {
         setGeneratedImage(result.data);
+        setLastSuccessfulPrompt(prompt);
       } else {
         setError('Failed to generate image');
       }
