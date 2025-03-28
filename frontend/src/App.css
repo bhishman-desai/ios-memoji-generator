@@ -92,6 +92,20 @@
 
 .image-container {
   margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.download-button {
+  background-color: #4CAF50;
+  margin-top: 1rem;
+}
+
+.download-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #000;
 }
 
 .generated-image {
@@ -100,6 +114,28 @@
   border: 3px solid #000;
   border-radius: 4px;
   box-shadow: 8px 8px 0px #000;
+}
+
+.download-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.format-select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 3px 3px 0px #000;
+  cursor: pointer;
+}
+
+.format-select:focus {
+  outline: none;
+  box-shadow: 5px 5px 0px #000;
 }
 
 .App-footer {

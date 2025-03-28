@@ -6,6 +6,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [generatedImage, setGeneratedImage] = useState('');
+  const [downloadFormat, setDownloadFormat] = useState('png');
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -39,6 +40,42 @@ function App() {
     }
   };
 
+  const convertBase64ToFormat = async (base64String, format) => {
+    const img = new Image();
+    img.src = `data:image/webp;base64,${base64String}`;
+    
+    return new Promise((resolve, reject) => {
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        
+        const dataUrl = canvas.toDataURL(`image/${format}`);
+        resolve(dataUrl);
+      };
+      img.onerror = reject;
+    });
+  };
+
+  const handleDownload = async () => {
+    if (generatedImage) {
+      try {
+        const dataUrl = await convertBase64ToFormat(generatedImage, downloadFormat);
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = `generated-emoji.${downloadFormat}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (err) {
+        setError('Error downloading image: ' + err.message);
+      }
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -69,6 +106,23 @@ function App() {
               alt="Generated emoji"
               className="generated-image"
             />
+            <div className="download-controls">
+              <select 
+                value={downloadFormat} 
+                onChange={(e) => setDownloadFormat(e.target.value)}
+                className="format-select"
+              >
+                <option value="png">PNG</option>
+                <option value="jpeg">JPEG</option>
+                <option value="webp">WEBP</option>
+              </select>
+              <button 
+                className="App-button download-button" 
+                onClick={handleDownload}
+              >
+                Download
+              </button>
+            </div>
           </div>
         )}
       </header>
