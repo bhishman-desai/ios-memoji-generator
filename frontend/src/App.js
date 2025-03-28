@@ -1,6 +1,27 @@
 import { useState } from 'react';
 import './App.css';
 
+const emojis = [
+  // Smileys & Emotion
+  '😀', '😃', '😄', '😁', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', 
+  '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥸', '🤩', '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', 
+  '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😥', '😓', '🤗', 
+  '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😯', '😦', '😧', '😮', '😲', '🥱', '😴', '🤤', '😪', '😵', '🤐',
+  // People & Body
+  '🤠', '🤑', '🤕', '🤒', '😷', '🤧', '🥴', '🥺', '🤢', '🤮', '🤡', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸',
+  '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '👶', '👧', '🧒', '👦', '👩', '🧑', '👨', '👩‍🦱', '👨‍🦱', '👩‍🦰', '👨‍🦰',
+  // Activities
+  '🎮', '🎲', '🎭', '🎨', '🎤', '🎧', '🎼', '🎹', '🥁', '🎷', '🎺', '🎸', '🎻', '🎬', '🏹', '🎯', '⚽', '🏀', '🏈', '⚾',
+  // Objects
+  '💡', '📱', '💻', '⌨️', '🖥️', '🖨️', '🖱️', '🕹️', '💾', '💿', '📀', '🎥', '📸', '📹', '📼', '🔍', '🔎', '🕯️', '💡',
+  // Symbols
+  '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️',
+  // Nature
+  '🌈', '☀️', '🌤️', '⛅', '🌥️', '☁️', '🌦️', '🌧️', '⛈️', '🌩️', '🌨️', '❄️', '☃️', '⛄', '🌬️', '💨', '🌪️', '🌫️', '🌊',
+  // Food & Drink
+  '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🥑', '🌭', '🍔'
+];
+
 function App() {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
@@ -76,8 +97,25 @@ function App() {
     }
   };
 
+  const getRandomEmojis = () => {
+    const numberOfEmojis = 5;
+    const randomEmojis = [];
+    for (let i = 0; i < numberOfEmojis; i++) {
+      const randomIndex = Math.floor(Math.random() * emojis.length);
+      randomEmojis.push(emojis[randomIndex]);
+    }
+    return randomEmojis.join(' ');
+  };
+
   return (
     <div className="App">
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-emoji">
+            {getRandomEmojis()}
+          </div>
+        </div>
+      )}
       <header className="App-header">
         <h1 className="App-title">iOS Style Memoji Generator</h1>
         <div className="input-container">
@@ -128,7 +166,7 @@ function App() {
       </header>
       
       <footer className="App-footer">
-        <p>Note: This application uses a cold server. The first generation might take a few minutes as the server warms up.</p>
+        <p>Note: This app uses a cold server. The first generation might take a few minutes as the server warms up.</p>
       </footer>
     </div>
   );
