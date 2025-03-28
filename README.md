@@ -2,7 +2,7 @@
 
 An AI-powered web application that generates custom iOS-style Memoji emojis based on text descriptions. The application uses Stable Diffusion XL with a specialized emoji LoRA model to create high-quality, stylized emoji artwork.
 
-![App Screenshot](frontend/public/app-screenshot.png)
+![App Screenshot](frontend/public/app-screenshot.PNG)
 
 ## Deployed Link
 
